@@ -1,6 +1,8 @@
 import { useFonts } from "expo-font";
-import PostsScreen from "./src/components/Screens/PostsScreen";
-import RegistrationScreen from "./src/components/Screens/RegistrationScreen";
+import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+
+import { RegistrationScr, LoginScr } from "./src/components/Screens";
 
 export default function App() {
     const [fontsLoaded] = useFonts({
@@ -11,9 +13,17 @@ export default function App() {
     if (!fontsLoaded) {
         return null;
     }
+
+    const MainStack = createStackNavigator();
     return (
-        <PostsScreen>
-            <RegistrationScreen />
-        </PostsScreen>
+        <NavigationContainer>
+            <MainStack.Navigator>
+                <MainStack.Screen
+                    name="Registration"
+                    component={RegistrationScr}
+                />
+                <MainStack.Screen name="Login" component={LoginScr} />
+            </MainStack.Navigator>
+        </NavigationContainer>
     );
 }

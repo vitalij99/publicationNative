@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import {
     StyleSheet,
     Text,
@@ -9,10 +10,12 @@ import {
 } from "react-native";
 
 const RegistrationScreen = () => {
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.containerblox}
             >
                 <Text style={{ ...styles.text, marginBottom: 32 }}>
                     Регістрація
@@ -38,12 +41,18 @@ const RegistrationScreen = () => {
             <TouchableOpacity style={{ ...styles.button, marginTop: 43 }}>
                 <Text style={styles.buttonText}>Зареєструватись</Text>
             </TouchableOpacity>
-            <Text style={styles.login}>Вже є обліковий запис? Увійти</Text>
+            <Text
+                style={styles.login}
+                onPress={() => navigation.navigate("Login")}
+            >
+                Вже є обліковий запис? Увійти
+            </Text>
         </View>
     );
 };
 
 const styles = StyleSheet.create({
+    containerblox: { flex: 1 },
     container: {
         flex: 0.7,
         marginTop: "auto",
